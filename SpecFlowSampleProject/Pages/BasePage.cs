@@ -10,10 +10,6 @@ namespace SpecFlowSampleProject.Pages
    public class BasePage
     {
        protected IWebDriver Driver;
-
-        public void CloseBrowser()
-        {
-            Driver.Quit(); 
-        }
+     
     }
 }

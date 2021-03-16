@@ -16,12 +16,6 @@ namespace SpecFlowSampleProject.Pages
             Driver = driver;
         }
 
-        public HomePage OpenUrlAndLogin()
-        {
-            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
-            return this;
-        }
-
         public MyAccountPage ClickSignInLink()
         {
             lnkSignIn.Click();

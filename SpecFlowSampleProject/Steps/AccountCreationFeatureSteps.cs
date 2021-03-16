@@ -11,13 +11,21 @@ namespace SpecFlowSampleProject.Steps
     public class AccountCreationFeatureSteps
     {
 
-        BasePage currentPage;      
+        BasePage currentPage;
+        IWebDriver Driver;
+
+        public AccountCreationFeatureSteps(ScenarioContext _scenarioContext)
+        {
+            Driver = (IWebDriver)_scenarioContext["Driver"];
+        }
 
         [Given(@"we are on homepage")]
         public void GivenWeAreOnHomepage()
         {
-            IWebDriver driver = BrowserFactory.GetBrowser();
-           currentPage = new HomePage(driver).OpenUrlAndLogin();
+            // IWebDriver driver = BrowserFactory.GetBrowser();
+            //currentPage = new HomePage(driver).OpenUrlAndLogin();
+
+            currentPage = new HomePage(Driver);
         }
         
         [Given(@"we click Sign in")]
@@ -38,8 +46,7 @@ namespace SpecFlowSampleProject.Steps
         [Then(@"Create an account page opens")]
         public void ThenCreateAnAccountPageOpens()
         {
-            Assert.That(((CreateAccountPage)currentPage).isPageHeadingDisplayed);
-            currentPage.CloseBrowser();
+            Assert.That(((CreateAccountPage)currentPage).isPageHeadingDisplayed);            
         }
     }
 }
