@@ -5,6 +5,10 @@ using SpecFlowSampleProject.Pages;
 using System;
 using TechTalk.SpecFlow;
 
+/// <summary>
+/// This class demonstrates using BeforeScenario and AfterScenario hooks in class implementing the steps
+/// Useful for initializations specific to a given scenario/scenarios
+/// </summary>
 namespace SpecFlowSampleProject.Steps
 {
     [Binding]
@@ -14,9 +18,16 @@ namespace SpecFlowSampleProject.Steps
         BasePage currentPage;
         IWebDriver Driver;
 
-        public AccountCreationFeatureSteps(ScenarioContext _scenarioContext)
+        public AccountCreationFeatureSteps()
         {
-            Driver = (IWebDriver)_scenarioContext["Driver"];
+            Driver = BrowserFactory.GetBrowser();              
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
+
         }
 
         [Given(@"we are on homepage")]
@@ -47,6 +58,12 @@ namespace SpecFlowSampleProject.Steps
         public void ThenCreateAnAccountPageOpens()
         {
             Assert.That(((CreateAccountPage)currentPage).isPageHeadingDisplayed);            
+        }      
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            Driver.Quit();
         }
     }
 }
