@@ -23,6 +23,7 @@ namespace SpecFlowSampleProject.Steps
             Driver = BrowserFactory.GetBrowser();              
         }
 
+        [Scope(Feature = "Account Creation Feature")]
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -58,8 +59,9 @@ namespace SpecFlowSampleProject.Steps
         public void ThenCreateAnAccountPageOpens()
         {
             Assert.That(((CreateAccountPage)currentPage).isPageHeadingDisplayed);            
-        }      
+        }
 
+        [Scope(Feature = "Account Creation Feature")]
         [AfterScenario]
         public void AfterScenario()
         {
